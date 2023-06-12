@@ -11,7 +11,7 @@ nombre_jugador = input("Por favor, ingresa tu nombre: ")
 print(f"""\nHola {nombre_jugador}.\n
       El objetivo del juego es hundir todos los barcos de la máquina antes de que ella hunda los tuyos.\n
       Tienes que elegir coordenadas (fila y columna) para disparar a los barcos de la máquina.\n
-      El tablero se representa con filas etiquetadas de A a J y columnas numeradas del 1 al 10.\n
+      El tablero se representa con  y filas etiquetadas de A a J ycolumnas numeradas del 1 al 10.\n
       Si tu disparo impacta en un barco, se marcará como 'X'. Si no, se marcará como '-'.\n
       ¡Buena suerte!\n""")
 input("Presiona Enter para comenzar...")
