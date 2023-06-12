@@ -1,5 +1,4 @@
 import numpy as np
-import random
 
 # Diccionario de los barcos y sus tamaños
 barcos = {

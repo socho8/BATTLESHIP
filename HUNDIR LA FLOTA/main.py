@@ -1,5 +1,5 @@
 from variables import tablero_jugador, tablero_maquina, tablero_intentos_jugador, tablero_intentos_maquina
-from clases import colocar_barcos_jugador, colocar_barcos_maquina,imprimir_tablero, obtener_posicion_barco, validar_disparo
+from funciones import colocar_barcos_jugador, colocar_barcos_maquina,imprimir_tablero, obtener_posicion_barco, validar_disparo
 from variables import barcos
 from random import randint
 import numpy as np
