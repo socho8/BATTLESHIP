@@ -1,40 +1,17 @@
-import numpy as np
 import random
-from random import randint
+import numpy as np
+from variables import barcos, numero_a_letras
 
-# Diccionario de los barcos y sus tamaños
-barcos = {
-    'Barco4': 4,
-    'Barco31': 3,
-    'Barco32': 3,
-    'Barco21': 2,
-    'Barco22': 2,
-    'Barco23': 2,
-    'Barco11': 1,
-    'Barco12': 1,
-    'Barco13': 1,
-    'Barco14': 1
-}
-
-# Tableros de juego
-tablero_jugador = np.full((10, 10), " ")
-tablero_maquina = np.full((10, 10), " ")
-tablero_intentos_jugador = np.full((10, 10), " ")
-tablero_intentos_maquina = np.full((10, 10), " ")
-
-def print_board(tablero):
+#Imprimir tabler
+def imprimir_tablero(tablero):
     print("   A B C D E F G H I J")
     print("  +-+-+-+-+-+-+-+-+-+-+")
     numero_filas = 1
     for filas in tablero:
         print("%2d|%s|" % (numero_filas, "|".join(filas)))
         numero_filas += 1
-
-numero_a_letras = {
-    'A': 0, 'B': 1, 'C': 2, 'D': 3, 'E': 4,
-    'F': 5, 'G': 6, 'H': 7, 'I': 8, 'J': 9
-}
-
+    
+#Obtener las posiciones de los barcos
 def obtener_posicion_barco():
     while True:
         try:
@@ -47,10 +24,11 @@ def obtener_posicion_barco():
             print("Posicion invalida, intentalo nuevamente. (ej: A1).")
     return fila, columna
 
+#Colocar manualmente los barcos 
 def colocar_barcos_jugador(tablero):
     for barco, tamaño in barcos.items():
         while True:
-            print_board(tablero)
+            imprimir_tablero(tablero)
             print(f"Colocando {barco} (con un tamaño de {tamaño} esloras)")
             fila_barco, columna_barco = obtener_posicion_barco()
             if tablero[fila_barco][columna_barco] == " ":
@@ -74,9 +52,10 @@ def colocar_barcos_jugador(tablero):
                     print("Posicion invalida, intentalo nuevamente.")
             else:
                 print("Esta opcion ya fue tomada, intentalo nuevamente")
-        print_board(tablero)
+        imprimir_tablero(tablero)
         print(f"El {barco} fue colocado correctamente.")
 
+#Colocar aleatoreamente los barcos de la maquina
 def colocar_barcos_maquina(tablero):
     for barco, tamaño in barcos.items():
         while True:
@@ -94,6 +73,7 @@ def colocar_barcos_maquina(tablero):
                         tablero[fila_barco + i][columna_barco] = "O"
                     break
 
+#Comprobar disparo
 def validar_disparo(fila, columna, tablero_barcos, tablero_intentos):
     if tablero_intentos[fila][columna] != " ":
         print("Ya has disparado en esta posicion. Intenta nuevamente.")
@@ -107,32 +87,3 @@ def validar_disparo(fila, columna, tablero_barcos, tablero_intentos):
         print("Disparo al agua.")
         tablero_intentos[fila][columna] = "-"
         return True
-
-# Colocar barcos en los tableros de jugador y máquina
-colocar_barcos_jugador(tablero_jugador)
-colocar_barcos_maquina(tablero_maquina)
-
-while True:
-    # Turno del jugador
-    while True:
-        print("Turno del jugador")
-        print("Introduzca coordenadas")
-        print_board(tablero_intentos_jugador)
-        fila, columna = obtener_posicion_barco()
-        if validar_disparo(fila, columna, tablero_maquina, tablero_intentos_jugador):
-            break
-
-    if np.count_nonzero(tablero_intentos_jugador == "X") == sum(barcos.values()):
-        print("¡Felicidades! Hundiste todos los barcos. ¡Ganaste!")
-        break
-
-    # Turno de la máquina
-    while True:
-        print("Turno de la computadora")
-        fila, columna = randint(0, 9), randint(0, 9)
-        if validar_disparo(fila, columna, tablero_jugador, tablero_intentos_maquina):
-            break
-
-    if np.count_nonzero(tablero_intentos_maquina == "X") == sum(barcos.values()):
-        print("Lo siento, la máquina hundió todos tus barcos. ¡Perdiste!")
-        break
