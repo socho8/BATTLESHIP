@@ -6,7 +6,7 @@ import numpy as np
 
 
 # Inicio del juego
-print("¡Bienvenido al juego de Batalla Naval!")
+print("¡Bienvenido al juego de Hundir la flota!")
 nombre_jugador = input("Por favor, ingresa tu nombre: ")
 print(input("¿Que edad tienes?"))
 print(f"""\nHola {nombre_jugador}.\n
