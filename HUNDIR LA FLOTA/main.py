@@ -8,6 +8,7 @@ import numpy as np
 # Inicio del juego
 print("¡Bienvenido al juego de Batalla Naval!")
 nombre_jugador = input("Por favor, ingresa tu nombre: ")
+print(input("¿Que edad tienes?"))
 print(f"""\nHola {nombre_jugador}.\n
       El objetivo del juego es hundir todos los barcos de la máquina antes de que ella hunda los tuyos.\n
       Tienes que elegir coordenadas (fila y columna) para disparar a los barcos de la máquina.\n
