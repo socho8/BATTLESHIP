@@ -28,32 +28,19 @@ def obtener_posicion_barco():
 def colocar_barcos_jugador(tablero):
     for barco, tamaño in barcos.items():
         while True:
-            imprimir_tablero(tablero)
-            print(f"Colocando {barco} (con un tamaño de {tamaño} esloras)")
-            fila_barco, columna_barco = obtener_posicion_barco()
-            if tablero[fila_barco][columna_barco] == " ":
-                # Horizontal o vertical
-                direccion = input("Introduzca una direccion (H para horinztoal y V para vertical): ").upper()
-                if direccion == "H":
-                    if columna_barco + tamaño <= 10 and all(tablero[fila_barco][columna_barco + i] == " " for i in range(tamaño)):
-                        for i in range(tamaño):
-                            tablero[fila_barco][columna_barco + i] = "O"
-                        break
-                    else:
-                        print("Posicion invalida, intentalo nuevamente.")
-                elif direccion == "V":
-                    if fila_barco + tamaño <= 10 and all(tablero[fila_barco + i][columna_barco] == " " for i in range(tamaño)):
-                        for i in range(tamaño):
-                            tablero[fila_barco + i][columna_barco] = "O"
-                        break
-                    else:
-                        print("Posicion invalida, intentalo nuevamente.")
-                else:
-                    print("Posicion invalida, intentalo nuevamente.")
-            else:
-                print("Esta opcion ya fue tomada, intentalo nuevamente")
-        imprimir_tablero(tablero)
-        print(f"El {barco} fue colocado correctamente.")
+            fila_barco = random.randint(0, 9)
+            columna_barco = random.randint(0, 9)
+            direccion = random.choice(["H", "V"])
+            if direccion == "H":
+                if columna_barco + tamaño <= 10 and all(tablero[fila_barco][columna_barco + i] == " " for i in range(tamaño)):
+                    for i in range(tamaño):
+                        tablero[fila_barco][columna_barco + i] = "O"
+                    break
+            elif direccion == "V":
+                if fila_barco + tamaño <= 10 and all(tablero[fila_barco + i][columna_barco] == " " for i in range(tamaño)):
+                    for i in range(tamaño):
+                        tablero[fila_barco + i][columna_barco] = "O"
+                    break
 
 #Colocar aleatoreamente los barcos de la maquina
 def colocar_barcos_maquina(tablero):
